@@ -1,0 +1,44 @@
+.form
+{
+	text-align:center;
+}
+div
+{
+	padding-right:2em;
+}
+.btn
+{
+	background-color:#b0e0e6;
+	font-size:1.5em;
+	outline:none;
+}
+.text
+{
+	outline:none;
+	font-size:1.5em;
+	border:none;
+	border-bottom:2px solid;
+}
+.task
+{
+	word-wrap:break-word;
+	box-shadow:6px 5px 9px 0px #888888;
+	margin-bottom:1em;
+	font-size:1em;
+	border-radius:1em;
+	padding-left:0.5em;
+	padding-top:0.5em;
+	width:20em;
+	height:5em;
+}
+.fas
+{
+	cursor:pointer;
+	text-align:center;
+	position:relative;
+	left:20.5em;
+}
+.fas:active
+{
+	transform:scale(0.9);
+}
