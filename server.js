@@ -8,34 +8,13 @@ let sqlite = require("sqlite3").verbose();
 function router(path, res)
 {
 	res.setHeader("Content-Type", "text/html");
-	path = (path == "/") ? "/index.html" : path;
+	path = (path == "/") ? "/form.html" : path;
 	fs.readFile(root + path, "utf8", (err, file) =>
 		{
 			if (err)
 				res.write("<h1>not found</h1>");
 			else
 				res.write(file);
-			//if (path == "/index.html")
-			//{
-			//	let db = new sqlite.Database("d.db");
-
-			//	db.all("SELECT rowid,task FROM todos", [], (err,rows) =>
-			//		{
-			//			if (err)
-			//				console.log("err in db.all " + err);
-			//			else
-			//			{
-			//				rows.forEach((row) =>
-			//					{
-			//						console.log(row.task);
-			//						res.write("<h3> " + "("+ row.rowid + ")" + row.task + "</h3>");
-			//					})
-			//			}
-			//			res.end();
-			//		})
-			//	db.close();
-			//}
-			//else
 				res.end();
 		})
 }
