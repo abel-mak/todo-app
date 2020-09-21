@@ -7,22 +7,30 @@ let sqlite = require("sqlite3").verbose();
 
 function router(path, res)
 {
-	res.setHeader("Content-Type", "text/html");
-	path = (path == "/") ? "/form.html" : path;
-	fs.readFile(root + path, "utf8", (err, file) =>
-		{
-			if (err)
-				res.write("<h1>not found</h1>");
-			else
-				res.write(file);
+	//path = (path == "/") ? "/form.html" : path;
+	if (path == "/")
+	{
+		res.statusCode = 302;
+		res.setHeader('Location','/form.html');
+	}
+	else
+	{
+		res.setHeader("Content-Type", "text/html");
+		fs.readFile(root + path, "utf8", (err, file) =>
+			{
+				if (err)
+					res.write("<h1>not found</h1>");
+				else
+					res.write(file);
 				res.end();
-		})
+			})
+	}
 }
 function insert(data)
 {
 	let db = new sqlite.Database("d.db");
 	
-	console.log("from insert data.todo: ", data.todo)
+	console.log("from insert data.todo: ", data.todo);
 	return new Promise((resolve, reject) =>
 		{
 			if (data.todo != "")
@@ -168,7 +176,7 @@ let server = http.createServer((req, res) =>
 			console.log("delete method and rowid: " + query.id);
 		}
 		//	console.log(req.method);
-		console.log(process_url(req.url));
+		console.log(req.method + ": " + JSON.stringify(process_url(req.url)));
 	});
 
 server.listen(port, ()=>
